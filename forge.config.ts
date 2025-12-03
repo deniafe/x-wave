@@ -6,13 +6,14 @@ import { MakerRpm } from "@electron-forge/maker-rpm";
 import { VitePlugin } from "@electron-forge/plugin-vite";
 import { FusesPlugin } from "@electron-forge/plugin-fuses";
 import { FuseV1Options, FuseVersion } from "@electron/fuses";
+import { execSync } from "child_process";
 
 const config: ForgeConfig = {
   packagerConfig: {
     asar: {
       unpack: "**/.vite/build/server.js",
     },
-    extraResource: ["./node_modules"],
+    extraResource: ["./.production-deps/node_modules"],
   },
   rebuildConfig: {},
   makers: [
@@ -75,6 +76,15 @@ const config: ForgeConfig = {
       [FuseV1Options.OnlyLoadAppFromAsar]: false,
     }),
   ],
+  hooks: {
+    generateAssets: async () => {
+      console.log("⚡ Preparing production dependencies...");
+      // This forces the script to run before Forge starts looking for files
+      execSync("node scripts/prepare-production-deps.js", {
+        stdio: "inherit",
+      });
+    },
+  },
 };
 
 export default config;

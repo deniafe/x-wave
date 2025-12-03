@@ -17,3 +17,4 @@ src/
 out/
 .vite/
 node_modules/
+.production-deps/

@@ -1,7 +1,7 @@
 {
   "name": "x-wave",
   "productName": "x-wave",
-  "version": "1.0.1",
+  "version": "1.0.0",
   "description": "X automation app",
   "main": ".vite/build/main.js",
   "private": true,
@@ -10,11 +10,12 @@
     "url": "https://github.com/deniafe/x-wave.git"
   },
   "scripts": {
+    "prepare:deps": "node scripts/prepare-production-deps.js",
     "start": "electron-forge start",
     "build:server": "vite build --config vite.server.config.mts",
-    "package": "electron-forge package",
-    "make": "electron-forge make",
-    "publish": "electron-forge publish",
+    "package": "npm run prepare:deps && electron-forge package",
+    "make": "npm run prepare:deps && electron-forge make",
+    "publish": "npm run prepare:deps && electron-forge publish",
     "ship": "npm run ship:patch",
     "ship:patch": "npm version patch && npm run git:push && npm run publish",
     "ship:minor": "npm version minor && npm run git:push && npm run publish",

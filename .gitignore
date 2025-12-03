@@ -1,0 +1,19 @@
+# 1. Ignore EVERYTHING by default
+*
+
+# 2. Allow only configuration files needed for the build
+!package.json
+!package-lock.json
+!forge.config.ts
+!tsconfig.json
+!vite.main.config.mts
+!vite.preload.config.mts
+!vite.renderer.config.mts
+!vite.server.config.mts
+!.gitignore
+
+# 3. Explicitly ensure source code and outputs are ignored
+src/
+out/
+.vite/
+node_modules/

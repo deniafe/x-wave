@@ -30,7 +30,10 @@ export default defineConfig({
     },
     target: "node18",
     outDir: ".vite/build",
-    emptyOutDir: true, // Don't delete main.js and preload.js
+
+    // 👇 CHANGE THIS VALUE FROM 'true' TO 'false'
+    emptyOutDir: false,
+
     minify: false, // Easier debugging
   },
   resolve: {

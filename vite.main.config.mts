@@ -8,4 +8,10 @@ export default defineConfig({
       "@": path.resolve(__dirname, "./src"),
     },
   },
+  build: {
+    rollupOptions: {
+      // ⚠️ CRITICAL: Native modules must be externalized
+      external: ["better-sqlite3"],
+    },
+  },
 });
